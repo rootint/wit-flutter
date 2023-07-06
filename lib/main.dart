@@ -58,10 +58,13 @@ class MyApp extends StatelessWidget {
         // }
       },
     );
-    
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Learning App',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
       routerConfig: router,
     );
   }
