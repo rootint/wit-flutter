@@ -14,40 +14,40 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final router = GoRouter(
       initialLocation: '/',
-      // routes: [
-      //   ShellRoute(
-      //     builder: (context, state, child) {
-      //       return Scaffold(
-      //         body: child,
-      //         bottomNavigationBar: BottomNavigationBar(
-      //           currentIndex: _calculateSelectedIndex(context),
-      //           onTap: (value) {
-      //             switch (value) {
-      //               case 0:
-      //                 const AuthRoute().go(context);
-      //                 break;
-      //               case 1:
-      //                 const SettingsRoute().go(context);
-      //                 break;
-      //             }
-      //           },
-      //           items: const [
-      //             BottomNavigationBarItem(
-      //               icon: Icon(Icons.home),
-      //               label: 'Feed',
-      //             ),
-      //             BottomNavigationBarItem(
-      //               icon: Icon(Icons.newspaper),
-      //               label: 'Discover',
-      //             ),
-      //           ],
-      //         ),
-      //       );
-      //     },
-      //     routes: $appRoutes,
-      //   ),
-      // ],
-      routes: $appRoutes,
+      routes: [
+        ShellRoute(
+          builder: (context, state, child) {
+            return Scaffold(
+              body: child,
+              // bottomNavigationBar: BottomNavigationBar(
+              //   currentIndex: _calculateSelectedIndex(context),
+              //   onTap: (value) {
+              //     switch (value) {
+              //       case 0:
+              //         const AuthRoute().go(context);
+              //         break;
+              //       case 1:
+              //         const SettingsRoute().go(context);
+              //         break;
+              //     }
+              //   },
+              //   items: const [
+              //     BottomNavigationBarItem(
+              //       icon: Icon(Icons.home),
+              //       label: 'Feed',
+              //     ),
+              //     BottomNavigationBarItem(
+              //       icon: Icon(Icons.newspaper),
+              //       label: 'Discover',
+              //     ),
+              //   ],
+              // ),
+            );
+          },
+          routes: $appRoutes,
+        ),
+      ],
+      // routes: $appRoutes,
       redirect: (context, state) {
         return null;
         // final isAuth = true;
