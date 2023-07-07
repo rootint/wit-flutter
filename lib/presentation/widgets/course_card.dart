@@ -16,7 +16,7 @@ class CourseCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: GestureDetector(
-          onTap: () => CourseRoute(courseId: '').go(context),
+          onTap: () => CourseRoute(courseId: '').push(context),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),

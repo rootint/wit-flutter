@@ -66,6 +66,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       routerConfig: router,
+      // routeInformationParser: router.routeInformationParser,
+      // routeInformationProvider: router.routeInformationProvider,
+      // routerDelegate: router.routerDelegate,
     );
   }
 }

@@ -27,6 +27,13 @@
 //   Future<bool> saveChatSettings(ChatSettings settings);
 // }
 
-// abstract class MainRepo extends ChangeNotifier {
+import '../models/course.dart';
+import '../models/topic.dart';
 
-// }
+abstract class MainRepo {
+  Future<List<Course>> getCoursesList();
+
+  Future<List<Topic>> getTopicsList(final String courseId);
+
+  
+}

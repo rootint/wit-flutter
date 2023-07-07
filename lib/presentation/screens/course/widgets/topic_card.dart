@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_app/config/router/app_router.dart';
 import 'package:learning_app/domain/models/topic.dart';
 
 class TopicCard extends StatelessWidget {
@@ -13,7 +14,7 @@ class TopicCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('afjkladfj');
+        TopicRoute(topicId: topic.id).push(context);
       },
       splashFactory: NoSplash.splashFactory,
       splashColor: Colors.black.withOpacity(0.25),
