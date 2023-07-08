@@ -11,8 +11,9 @@ Topic _$TopicFromJson(Map<String, dynamic> json) => Topic(
       title: json['title'] as String,
       courseId: json['courseId'] as String,
       questionsTotal: json['questionsTotal'] as int,
-      questionsCompleted: json['questionsCompleted'] as int,
-      number: json['number'] as int,
+      questions: (json['questions'] as List<dynamic>)
+          .map((e) => Question.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
@@ -20,6 +21,5 @@ Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
       'title': instance.title,
       'courseId': instance.courseId,
       'questionsTotal': instance.questionsTotal,
-      'questionsCompleted': instance.questionsCompleted,
-      'number': instance.number,
+      'questions': instance.questions,
     };

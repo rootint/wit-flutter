@@ -39,9 +39,9 @@ class CourseScreen extends StatelessWidget {
                   title: 'Introduction',
                   courseId: courseId,
                   questionsTotal: 5,
-                  questionsCompleted: 2,
-                  number: index,
+                  questions: [],
                 ),
+                number: index,
               );
             },
             itemCount: 10,

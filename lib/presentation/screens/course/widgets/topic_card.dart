@@ -6,9 +6,11 @@ import 'package:learning_app/domain/models/topic.dart';
 class TopicCard extends StatelessWidget {
   const TopicCard({
     required this.topic,
+    required this.number, 
     super.key,
   });
   final Topic topic;
+  final int number;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class TopicCard extends StatelessWidget {
               height: 48,
               child: Center(
                 child: Text(
-                  topic.number.toString(),
+                  number.toString(),
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
@@ -57,7 +59,7 @@ class TopicCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                      '${topic.questionsCompleted}/${topic.questionsTotal} questions completed',
+                      '${topic.questions.length}/${topic.questionsTotal} questions completed',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.black.withOpacity(0.5),

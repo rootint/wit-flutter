@@ -1,39 +1,22 @@
-// import 'package:either_dart/either.dart';
-// import 'package:flutter/material.dart';
-// import '../../data/network/dto/core/general_message.dart';
-// import '../../data/network/dto/matrix/course.dart';
-// import '../models/core/varsityscape_subuser.dart';
-// import '../models/matrix/chat_settings.dart';
-// import '../models/matrix/matrix_user_data.dart';
-// import '../models/matrix/matrix_vs_data.dart';
+import 'package:learning_app/data/network/dto/auth_dto.dart';
+import 'package:learning_app/domain/models/auth_response.dart';
 
-// import '../models/matrix/matrix_user.dart';
-
-// abstract class MatrixRepo extends ChangeNotifier {
-//   Future<Either<GeneralError, String>> getRoomByCourseId(String courseId);
-
-//   Future<Either<GeneralError, Map<String, MatrixCourse>>> matrixCourses();
-
-//   Future<Either<GeneralError, String>> getCourseByRoomId(String roomId);
-
-//   Future<Either<GeneralError, MatrixUser>> getCurrentMatrixUserData();
-
-//   Future<Either<GeneralError, MatrixVSData>> getVSDataByMatrixId(String roomId);
-
-//   Future<Either<GeneralError, VarsityScapeSubUser>> getMatrixUserData(
-//       String username);
-
-//   Future<ChatSettings?> retrieveChatSettings();
-//   Future<bool> saveChatSettings(ChatSettings settings);
-// }
-
+import '../models/chat.dart';
 import '../models/course.dart';
 import '../models/topic.dart';
 
 abstract class MainRepo {
+  Future<AuthResponse> login(final AuthDto dto);
+
+  Future<AuthResponse> register(final AuthDto dto);
+
   Future<List<Course>> getCoursesList();
 
-  Future<List<Topic>> getTopicsList(final String courseId);
+  Future<List<Topic>> getCourseTopics(final String courseId);
 
-  
+  Future<Chat> generateChat(final String topicId);
+
+  Future<Chat> getMessages(final String questionId);
+
+  Future<Chat> sendReceiveMessage(final String questionId);
 }
