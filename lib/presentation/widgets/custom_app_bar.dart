@@ -19,11 +19,11 @@ class CustomAppBar extends StatelessWidget {
       bottom: false,
       child: Container(
         decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: Colors.grey.shade800.withOpacity(0.32),
-            ),
-          ),
+          // border: Border(
+          //   bottom: BorderSide(
+          //     color: Colors.grey.shade800.withOpacity(0.32),
+          //   ),
+          // ),
         ),
         height: 46,
         child: Stack(

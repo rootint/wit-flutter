@@ -12,6 +12,15 @@ class ChatLoading extends ChatState {
   List<Object> get props => [];
 }
 
+class QuestionLoading extends ChatState {
+  final List<Message> messages;
+
+  const QuestionLoading(this.messages);
+
+  @override
+  List<Object> get props => [messages];
+}
+
 class ChatLoaded extends ChatState {
   final List<Message> messages;
 

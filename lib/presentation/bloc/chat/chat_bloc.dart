@@ -30,6 +30,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     // emit(ChatLoading());
     print(event.topicId);
     print('Response sent!');
+    emit(QuestionLoading(chats[event.topicId]!));
     final response = await repo.sendReceiveMessage(
       event.topicId,
       event.questionId,
