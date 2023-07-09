@@ -2,12 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_app/config/router/app_router.dart';
 
+import '../../domain/models/course.dart';
+
 class CourseCard extends StatelessWidget {
   const CourseCard({
     required this.heroTag,
+    required this.course,
+    required this.isHomePage,
     super.key,
   });
   final String heroTag;
+  final Course course;
+  final bool isHomePage;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,9 @@ class CourseCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: GestureDetector(
-          onTap: () => CourseRoute(courseId: '').push(context),
+          onTap: isHomePage
+              ? () => CourseRoute(courseId: course.id).push(context)
+              : null,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -33,8 +41,8 @@ class CourseCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Introduction to\nMachine Learning',
-                          style: TextStyle(
+                          course.title,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 24,
                             color: Colors.white,
@@ -82,7 +90,7 @@ class CourseCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      '60% Completed',
+                      '${(course.topicsCompleted / course.topicsTotal / 100).toStringAsFixed(0)}% Completed',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
@@ -94,18 +102,19 @@ class CourseCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '15 Topics',
-                        style: TextStyle(
+                        '${course.topicsTotal} Topics',
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
                       ),
                       const Spacer(),
-                      Icon(
-                        CupertinoIcons.arrow_right,
-                        color: Colors.white,
-                      )
+                      if (isHomePage)
+                        const Icon(
+                          CupertinoIcons.arrow_right,
+                          color: Colors.white,
+                        ),
                     ],
                   ),
                 ],

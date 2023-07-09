@@ -8,16 +8,16 @@ part of 'course.dart';
 
 Course _$CourseFromJson(Map<String, dynamic> json) => Course(
       id: json['id'] as String,
-      title: json['title'] as String,
-      source: json['source'] as String,
-      topicsCompleted: json['topicsCompleted'] as int,
-      topicsTotal: json['topicsTotal'] as int,
+      title: json['name'] as String,
+      source: json['source_url'] as String,
+      topicsCompleted: json['topics_completed'] as int,
+      topicsTotal: json['topics_amount'] as int,
     );
 
 Map<String, dynamic> _$CourseToJson(Course instance) => <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'source': instance.source,
-      'topicsTotal': instance.topicsTotal,
-      'topicsCompleted': instance.topicsCompleted,
+      'name': instance.title,
+      'source_url': instance.source,
+      'topics_amount': instance.topicsTotal,
+      'topics_completed': instance.topicsCompleted,
     };

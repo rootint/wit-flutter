@@ -6,3 +6,9 @@ abstract class TopicsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetTopicsEvent extends TopicsEvent {
+  final String courseId;
+
+  const GetTopicsEvent(this.courseId);
+}

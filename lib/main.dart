@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:learning_app/presentation/bloc/courses/courses_bloc.dart';
+import 'package:learning_app/presentation/bloc/topics/topics_bloc.dart';
 
 import 'config/router/app_router.dart';
 
-void main() {
+import 'injection_container.dart' as di;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -59,16 +66,34 @@ class MyApp extends StatelessWidget {
       },
     );
 
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Learning App',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CoursesBloc>(create: (_) => di.sl.get<CoursesBloc>()),
+        BlocProvider<TopicsBloc>(create: (_) => di.sl.get<TopicsBloc>()),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Learning App',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        routerConfig: router,
+        // routeInformationParser: router.routeInformationParser,
+        // routeInformationProvider: router.routeInformationProvider,
+        // routerDelegate: router.routerDelegate,
       ),
-      routerConfig: router,
-      // routeInformationParser: router.routeInformationParser,
-      // routeInformationProvider: router.routeInformationProvider,
-      // routerDelegate: router.routerDelegate,
     );
+
+    // return MaterialApp.router(
+    //   debugShowCheckedModeBanner: false,
+    //   title: 'Learning App',
+    //   theme: ThemeData(
+    //     scaffoldBackgroundColor: Colors.white,
+    //   ),
+    //   routerConfig: router,
+    //   // routeInformationParser: router.routeInformationParser,
+    //   // routeInformationProvider: router.routeInformationProvider,
+    //   // routerDelegate: router.routerDelegate,
+    // );
   }
 }

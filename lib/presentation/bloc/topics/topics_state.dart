@@ -7,4 +7,10 @@ abstract class TopicsState extends Equatable {
   List<Object> get props => [];
 }
 
-class TopicsInitial extends TopicsState {}
+class TopicsLoading extends TopicsState {}
+
+class TopicsLoaded extends TopicsState {
+  final List<Topic> topics;
+
+  const TopicsLoaded(this.topics);
+}
