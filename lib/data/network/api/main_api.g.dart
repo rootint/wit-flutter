@@ -160,20 +160,24 @@ class _MainApi implements MainApi {
   }
 
   @override
-  Future<Chat> sendReceiveMessage(String questionId) async {
+  Future<MessageResponse> sendReceiveMessage(
+    int topicId,
+    MessageDto message,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Chat>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(message.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/questions/${questionId}/send-receive-message',
+              '/topics/${topicId}/question',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -182,28 +186,28 @@ class _MainApi implements MainApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Chat.fromJson(_result.data!);
+    final value = MessageResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<Topic> getMessages(
+  Future<List<Message>> getMessages(
     int topicId,
-    int courseId,
+    int questionId,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Topic>(Options(
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Message>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/courses/${courseId}/topics/${topicId}',
+              '/chat/${topicId}/${questionId}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -212,7 +216,9 @@ class _MainApi implements MainApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Topic.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => Message.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

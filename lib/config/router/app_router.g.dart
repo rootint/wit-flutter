@@ -70,14 +70,14 @@ extension $CourseRouteExtension on CourseRoute {
 
 extension $TopicRouteExtension on TopicRoute {
   static TopicRoute _fromState(GoRouterState state) => TopicRoute(
-        courseId: int.parse(state.queryParameters['course-id']!),
+        questionId: int.parse(state.queryParameters['question-id']!),
         topicId: int.parse(state.queryParameters['topic-id']!),
       );
 
   String get location => GoRouteData.$location(
         '/topic',
         queryParams: {
-          'course-id': courseId.toString(),
+          'question-id': questionId.toString(),
           'topic-id': topicId.toString(),
         },
       );

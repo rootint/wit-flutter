@@ -9,7 +9,19 @@ abstract class ChatEvent extends Equatable {
 
 class GetChatEvent extends ChatEvent {
   final int topicId;
-  final int courseId;
+  final int questionId;
 
-  GetChatEvent(this.topicId, this.courseId);
+  const GetChatEvent(this.topicId, this.questionId);
+}
+
+class SendMessageEvent extends ChatEvent {
+  final int topicId;
+  final int questionId;
+  final String text;
+
+  const SendMessageEvent(
+    this.topicId,
+    this.questionId,
+    this.text,
+  );
 }

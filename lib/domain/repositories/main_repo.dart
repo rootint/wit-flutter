@@ -1,8 +1,10 @@
 import 'package:learning_app/data/network/dto/auth_dto.dart';
 import 'package:learning_app/domain/models/auth_response.dart';
+import 'package:learning_app/domain/models/message_response.dart';
 
 import '../models/chat.dart';
 import '../models/course.dart';
+import '../models/message.dart';
 import '../models/topic.dart';
 
 abstract class MainRepo {
@@ -16,7 +18,11 @@ abstract class MainRepo {
 
   Future<Chat> generateChat(final String topicId);
 
-  Future<Topic> getMessages(final int topicId, final int courseId);
+  Future<List<Message>> getMessages(final int topicId, final int questionId);
 
-  Future<Chat> sendReceiveMessage(final String questionId);
+  Future<MessageResponse> sendReceiveMessage(
+    final int topicId,
+    final int questionId,
+    final String text,
+  );
 }

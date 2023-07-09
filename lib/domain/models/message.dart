@@ -4,12 +4,12 @@ part 'message.g.dart';
 
 @JsonSerializable()
 class Message {
-  final int id;
+  @JsonKey(name: 'message')
   final String text;
-  final bool sentByUser;
+  @JsonKey(name: 'sent_by_user')
+  final int sentByUser;
 
   Message({
-    required this.id,
     required this.sentByUser,
     required this.text,
   });

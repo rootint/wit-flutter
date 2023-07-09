@@ -53,11 +53,11 @@ class CourseRoute extends GoRouteData {
 @immutable
 class TopicRoute extends GoRouteData {
   const TopicRoute({
-    required this.courseId,
+    required this.questionId,
     required this.topicId,
   });
   final int topicId;
-  final int courseId;
+  final int questionId;
 
   @override
   Widget build(
@@ -66,7 +66,7 @@ class TopicRoute extends GoRouteData {
   ) {
     return TopicScreen(
       topicId: topicId,
-      courseId: courseId,
+      questionId: questionId,
     );
   }
 }

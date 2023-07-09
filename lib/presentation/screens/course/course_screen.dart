@@ -76,55 +76,55 @@ class _CourseScreenState extends State<CourseScreen> {
                   },
                   itemCount: state.topics.length + 2,
                 ),
-                Positioned(
-                  bottom: 32,
-                  left: 16,
-                  right: 16,
-                  child: InkWell(
-                    onTap: () {
-                      print('afjkladfj');
-                    },
-                    splashFactory: NoSplash.splashFactory,
-                    splashColor: Colors.black.withOpacity(0.25),
-                    child: Container(
-                      height: 54,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
-                            spreadRadius: 5,
-                            blurRadius: 24,
-                            offset: const Offset(0, 24),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              // TODO: last uncompleted topic
-                              widget.courseId.toString() + 'Introduction',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            const Icon(
-                              CupertinoIcons.arrow_right,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   bottom: 32,
+                //   left: 16,
+                //   right: 16,
+                //   child: InkWell(
+                //     onTap: () {
+                //       print('afjkladfj');
+                //     },
+                //     splashFactory: NoSplash.splashFactory,
+                //     splashColor: Colors.black.withOpacity(0.25),
+                //     child: Container(
+                //       height: 54,
+                //       decoration: BoxDecoration(
+                //         color: Colors.black,
+                //         borderRadius: BorderRadius.circular(16),
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: Colors.black.withOpacity(0.3),
+                //             spreadRadius: 5,
+                //             blurRadius: 24,
+                //             offset: const Offset(0, 24),
+                //           ),
+                //         ],
+                //       ),
+                //       child: Center(
+                //         child: Row(
+                //           mainAxisSize: MainAxisSize.min,
+                //           children: [
+                //             Text(
+                //               // TODO: last uncompleted topic
+                //               widget.courseId.toString() + 'Introduction',
+                //               style: const TextStyle(
+                //                 fontSize: 18,
+                //                 fontWeight: FontWeight.w500,
+                //                 color: Colors.white,
+                //               ),
+                //             ),
+                //             const SizedBox(width: 8),
+                //             const Icon(
+                //               CupertinoIcons.arrow_right,
+                //               size: 20,
+                //               color: Colors.white,
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             );
           }

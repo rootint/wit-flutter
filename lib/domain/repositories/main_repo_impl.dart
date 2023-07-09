@@ -1,11 +1,14 @@
 import 'package:learning_app/data/network/dto/auth_dto.dart';
+import 'package:learning_app/data/network/dto/message_dto.dart';
 import 'package:learning_app/domain/models/auth_response.dart';
 import 'package:learning_app/domain/models/chat.dart';
 import 'package:learning_app/domain/models/course.dart';
+import 'package:learning_app/domain/models/message_response.dart';
 import 'package:learning_app/domain/models/topic.dart';
 import 'package:learning_app/domain/repositories/main_repo.dart';
 
 import '../../data/network/api/main_api.dart';
+import '../models/message.dart';
 
 class MainRepoImpl implements MainRepo {
   final MainApi api;
@@ -30,8 +33,8 @@ class MainRepoImpl implements MainRepo {
   }
 
   @override
-  Future<Topic> getMessages(int topicId, int courseId) async {
-    final response = await api.getMessages(topicId, courseId);
+  Future<List<Message>> getMessages(int topicId, int questionId) async {
+    final response = await api.getMessages(topicId, questionId);
     return response;
   }
 
@@ -48,8 +51,12 @@ class MainRepoImpl implements MainRepo {
   }
 
   @override
-  Future<Chat> sendReceiveMessage(String questionId) async {
-    final response = await api.sendReceiveMessage(questionId);
+  Future<MessageResponse> sendReceiveMessage(
+    int topicId,
+    int questionId,
+    String text,
+  ) async {
+    final response = await api.sendReceiveMessage(topicId, MessageDto(questionId: questionId, answer: text));
     return response;
   }
 }

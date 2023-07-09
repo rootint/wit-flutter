@@ -75,7 +75,9 @@ class CourseCard extends StatelessWidget {
                       ),
                       Positioned(
                         left: 0,
-                        right: 40,
+                        right: (MediaQuery.of(context).size.width - 64) -
+                            (course.topicsCompleted / course.topicsTotal) /
+                                (MediaQuery.of(context).size.width - 64),
                         child: Container(
                           height: 12,
                           decoration: BoxDecoration(

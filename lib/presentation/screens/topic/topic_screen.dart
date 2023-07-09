@@ -7,21 +7,31 @@ import 'package:learning_app/presentation/widgets/custom_app_bar.dart';
 class TopicScreen extends StatefulWidget {
   const TopicScreen({
     required this.topicId,
-    required this.courseId,
+    required this.questionId,
     super.key,
   });
   final int topicId;
-  final int courseId;
+  final int questionId;
 
   @override
   State<TopicScreen> createState() => _TopicScreenState();
 }
 
 class _TopicScreenState extends State<TopicScreen> {
+  final TextEditingController controller = TextEditingController();
+
   @override
   void initState() {
-    context.read<ChatBloc>().add(GetChatEvent(widget.topicId, widget.courseId));
+    context
+        .read<ChatBloc>()
+        .add(GetChatEvent(widget.topicId, widget.questionId));
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -65,7 +75,9 @@ class _TopicScreenState extends State<TopicScreen> {
                             const SizedBox(width: 8),
                             Flexible(
                               child: Text(
-                                'What is Feature Engineering?',
+                                // 'What is Feature Engineering?',
+                                // state.messages.toString(),
+                                'Testing',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -82,9 +94,14 @@ class _TopicScreenState extends State<TopicScreen> {
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       itemBuilder: (context, index) {
-                        return Text('adfjakd');
+                        final message = state.messages[index];
+                        if (message.sentByUser == 0) {
+                          return Text(state.messages[index].text);
+                        } else {
+                          return Text(state.messages[index].text);
+                        }
                       },
-                      itemCount: 20,
+                      itemCount: state.messages.length,
                     ),
                   ),
                   Container(
@@ -107,6 +124,7 @@ class _TopicScreenState extends State<TopicScreen> {
                                 horizontal: 8.0,
                                 vertical: 8,
                               ),
+                              controller: controller,
                               decoration: InputDecoration(
                                 hintText: 'Enter your message...',
                                 focusedBorder: OutlineInputBorder(
@@ -154,7 +172,14 @@ class _TopicScreenState extends State<TopicScreen> {
                           ),
                           const SizedBox(width: 12),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context.read<ChatBloc>().add(SendMessageEvent(
+                                    widget.topicId,
+                                    widget.questionId,
+                                    controller.text,
+                                  ));
+                              controller.text = '';
+                            },
                             splashFactory: NoSplash.splashFactory,
                             child: Container(
                               decoration: BoxDecoration(

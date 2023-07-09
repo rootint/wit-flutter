@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:learning_app/data/network/dto/auth_dto.dart';
+import 'package:learning_app/data/network/dto/message_dto.dart';
 import 'package:learning_app/domain/models/auth_response.dart';
 import 'package:learning_app/domain/models/chat.dart';
 import 'package:learning_app/domain/models/course.dart';
+import 'package:learning_app/domain/models/message.dart';
+import 'package:learning_app/domain/models/message_response.dart';
 import 'package:learning_app/domain/models/topic.dart';
 import 'package:retrofit/http.dart';
 
@@ -40,16 +43,25 @@ abstract class MainApi {
   // );
 
   // @POST('/courses/{course_id}/{topic_id}/{question_id}/send-receive-message')
-  @POST('/questions/{question_id}/send-receive-message')
-  Future<Chat> sendReceiveMessage(
+  @POST('/topics/{topic_id}/question')
+  Future<MessageResponse> sendReceiveMessage(
     // @Path('course_id') final String courseId,
     // @Path('topic_id') final String topicId,
-    @Path('question_id') final String questionId,
+    @Path('topic_id') final int topicId,
+    @Body() final MessageDto message,
   );
 
-  @GET('/courses/{courses_id}/topics/{topic_id}')
-  Future<Topic> getMessages(
+  // @GET('/courses/{courses_id}/topics/{topic_id}')
+  // Future<Topic> getMessages(
+  //   @Path('topic_id') final int topicId,
+  //   @Path('courses_id') final int courseId,
+  // );
+
+  @GET('/chat/{topic_id}/{question_id}')
+  Future<List<Message>> getMessages(
     @Path('topic_id') final int topicId,
-    @Path('courses_id') final int courseId,
+    @Path('question_id') final int questionId,
   );
+
+
 }
