@@ -8,9 +8,21 @@ import 'package:learning_app/presentation/widgets/course_card.dart';
 import '../../bloc/topics/topics_bloc.dart';
 import '../../widgets/custom_app_bar.dart';
 
-class CourseScreen extends StatelessWidget {
+class CourseScreen extends StatefulWidget {
   const CourseScreen({required this.courseId, super.key});
-  final String courseId;
+  final int courseId;
+
+  @override
+  State<CourseScreen> createState() => _CourseScreenState();
+}
+
+class _CourseScreenState extends State<CourseScreen> {
+
+  @override
+  void initState() {
+    context.read<TopicsBloc>().add(GetTopicsEvent(widget.courseId));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +49,9 @@ class CourseScreen extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: CourseCard(
-                          heroTag: courseId,
+                          heroTag: widget.courseId.toString(),
                           course:
-                              context.read<CoursesBloc>().courses[courseId]!,
+                              context.read<CoursesBloc>().courses[widget.courseId]!,
                           isHomePage: false,
                         ),
                       );
@@ -94,7 +106,7 @@ class CourseScreen extends StatelessWidget {
                           children: [
                             Text(
                               // TODO: last uncompleted topic
-                              courseId + 'Introduction',
+                              widget.courseId.toString() + 'Introduction',
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,

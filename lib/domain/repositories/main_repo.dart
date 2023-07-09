@@ -12,7 +12,7 @@ abstract class MainRepo {
 
   Future<List<Course>> getCoursesList();
 
-  Future<List<Topic>> getCourseTopics(final String courseId);
+  Future<List<Topic>> getCourseTopics(final int courseId);
 
   Future<Chat> generateChat(final String topicId);
 

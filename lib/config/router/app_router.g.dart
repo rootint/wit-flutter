@@ -48,13 +48,13 @@ extension $HomeRouteExtension on HomeRoute {
 
 extension $CourseRouteExtension on CourseRoute {
   static CourseRoute _fromState(GoRouterState state) => CourseRoute(
-        courseId: state.queryParameters['course-id']!,
+        courseId: int.parse(state.queryParameters['course-id']!),
       );
 
   String get location => GoRouteData.$location(
         '/course',
         queryParams: {
-          'course-id': courseId,
+          'course-id': courseId.toString(),
         },
       );
 

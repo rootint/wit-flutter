@@ -22,7 +22,7 @@ abstract class MainApi {
   Future<List<Course>> getCoursesList();
 
   @GET('/courses/{course_id}')
-  Future<List<Topic>> getCourseTopics(@Path('course_id') final String courseId);
+  Future<List<Topic>> getCourseTopics(@Path('course_id') final int courseId);
 
   // @GET('/courses/{course_id}/{topic_id}/generate')
   @GET('/topics/{topic_id}/generate')

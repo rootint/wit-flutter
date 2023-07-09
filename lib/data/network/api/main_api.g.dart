@@ -104,7 +104,7 @@ class _MainApi implements MainApi {
   }
 
   @override
-  Future<List<Topic>> getCourseTopics(String courseId) async {
+  Future<List<Topic>> getCourseTopics(int courseId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

@@ -8,7 +8,7 @@ abstract class TopicsEvent extends Equatable {
 }
 
 class GetTopicsEvent extends TopicsEvent {
-  final String courseId;
+  final int courseId;
 
   const GetTopicsEvent(this.courseId);
 }

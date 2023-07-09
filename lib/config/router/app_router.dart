@@ -39,7 +39,7 @@ class HomeRoute extends GoRouteData {
 @immutable
 class CourseRoute extends GoRouteData {
   const CourseRoute({required this.courseId});
-  final String courseId;
+  final int courseId;
 
   @override
   Widget build(

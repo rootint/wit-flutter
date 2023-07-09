@@ -10,7 +10,7 @@ part 'courses_state.dart';
 class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   final MainRepo repo;
 
-  Map<String, Course> courses = {};
+  Map<int, Course> courses = {};
 
   CoursesBloc({required this.repo}) : super(CoursesLoading()) {
     on<GetCoursesEvent>(_getCoursesHandler);

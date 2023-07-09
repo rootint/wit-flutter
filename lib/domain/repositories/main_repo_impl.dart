@@ -24,7 +24,7 @@ class MainRepoImpl implements MainRepo {
   }
 
   @override
-  Future<List<Topic>> getCourseTopics(String courseId) async {
+  Future<List<Topic>> getCourseTopics(int courseId) async {
     final response = await api.getCourseTopics(courseId);
     return response;
   }
