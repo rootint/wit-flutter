@@ -16,7 +16,7 @@ abstract class MainRepo {
 
   Future<Chat> generateChat(final String topicId);
 
-  Future<Chat> getMessages(final String questionId);
+  Future<Topic> getMessages(final int topicId, final int courseId);
 
   Future<Chat> sendReceiveMessage(final String questionId);
 }

@@ -30,8 +30,8 @@ class MainRepoImpl implements MainRepo {
   }
 
   @override
-  Future<Chat> getMessages(String questionId) async {
-    final response = await api.getMessages(questionId);
+  Future<Topic> getMessages(int topicId, int courseId) async {
+    final response = await api.getMessages(topicId, courseId);
     return response;
   }
 

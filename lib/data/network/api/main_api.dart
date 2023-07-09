@@ -32,12 +32,12 @@ abstract class MainApi {
   );
 
   // @GET('/courses/{course_id}/{topic_id}/{question_id}')
-  @GET('/questions/{question_id}')
-  Future<Chat> getMessages(
-    // @Path('course_id') final String courseId,
-    // @Path('topic_id') final String topicId,
-    @Path('question_id') final String questionId,
-  );
+  // @GET('/question/{question_id}')
+  // Future<Chat> getMessages(
+  //   // @Path('course_id') final String courseId,
+  //   // @Path('topic_id') final String topicId,
+  //   @Path('question_id') final int questionId,
+  // );
 
   // @POST('/courses/{course_id}/{topic_id}/{question_id}/send-receive-message')
   @POST('/questions/{question_id}/send-receive-message')
@@ -45,5 +45,11 @@ abstract class MainApi {
     // @Path('course_id') final String courseId,
     // @Path('topic_id') final String topicId,
     @Path('question_id') final String questionId,
+  );
+
+  @GET('/courses/{courses_id}/topics/{topic_id}')
+  Future<Topic> getMessages(
+    @Path('topic_id') final int topicId,
+    @Path('courses_id') final int courseId,
   );
 }

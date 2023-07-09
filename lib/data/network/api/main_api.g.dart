@@ -160,33 +160,6 @@ class _MainApi implements MainApi {
   }
 
   @override
-  Future<Chat> getMessages(String questionId) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Chat>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/questions/${questionId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = Chat.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<Chat> sendReceiveMessage(String questionId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -210,6 +183,36 @@ class _MainApi implements MainApi {
               baseUrl,
             ))));
     final value = Chat.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Topic> getMessages(
+    int topicId,
+    int courseId,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Topic>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/courses/${courseId}/topics/${topicId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Topic.fromJson(_result.data!);
     return value;
   }
 

@@ -20,7 +20,10 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       GetCoursesEvent event, Emitter<CoursesState> emit) async {
     emit(CoursesLoading());
     final response = await repo.getCoursesList();
-    response.map((e) => courses[e.id] = e);
+    // response.map((e) => courses[e.id] = e);
+    for (var e in response) {
+      courses[e.id] = e;
+    }
     emit(CoursesLoaded(response));
   }
 }

@@ -7,7 +7,7 @@ part of 'question.dart';
 // **************************************************************************
 
 Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
-      id: json['id'] as String,
+      id: json['id'] as int,
       text: json['text'] as String,
     );
 

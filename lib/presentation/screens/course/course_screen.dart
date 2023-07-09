@@ -70,7 +70,7 @@ class _CourseScreenState extends State<CourseScreen> {
                     //   number: index,
                     // );
                     return TopicCard(
-                      topic: state.topics[index + 1],
+                      topic: state.topics[index - 1],
                       number: index,
                     );
                   },

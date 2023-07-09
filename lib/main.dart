@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:learning_app/presentation/bloc/chat/chat_bloc.dart';
 import 'package:learning_app/presentation/bloc/courses/courses_bloc.dart';
 import 'package:learning_app/presentation/bloc/topics/topics_bloc.dart';
 
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<CoursesBloc>(create: (_) => di.sl.get<CoursesBloc>()),
         BlocProvider<TopicsBloc>(create: (_) => di.sl.get<TopicsBloc>()),
+        BlocProvider<ChatBloc>(create: (_) => di.sl.get<ChatBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

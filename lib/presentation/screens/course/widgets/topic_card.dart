@@ -6,7 +6,7 @@ import 'package:learning_app/domain/models/topic.dart';
 class TopicCard extends StatelessWidget {
   const TopicCard({
     required this.topic,
-    required this.number, 
+    required this.number,
     super.key,
   });
   final Topic topic;
@@ -16,7 +16,7 @@ class TopicCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        TopicRoute(topicId: topic.id).push(context);
+        TopicRoute(topicId: topic.id, courseId: topic.courseId).push(context);
       },
       splashFactory: NoSplash.splashFactory,
       splashColor: Colors.black.withOpacity(0.25),
@@ -58,8 +58,7 @@ class TopicCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                      '${topic.questions.length}/${topic.questionsTotal} questions completed',
+                  Text('${topic.questions.length}/${5} questions completed',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.black.withOpacity(0.5),

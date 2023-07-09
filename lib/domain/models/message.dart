@@ -4,7 +4,7 @@ part 'message.g.dart';
 
 @JsonSerializable()
 class Message {
-  final String id;
+  final int id;
   final String text;
   final bool sentByUser;
 

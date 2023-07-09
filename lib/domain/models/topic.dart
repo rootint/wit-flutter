@@ -5,17 +5,19 @@ part 'topic.g.dart';
 
 @JsonSerializable()
 class Topic {
-  final String id;
+  final int id;
+  @JsonKey(name: 'name')
   final String title;
-  final String courseId;
-  final int questionsTotal;
+  @JsonKey(name: 'course_id')
+  final int courseId;
+  // final int questionsTotal;
   final List<Question> questions;
 
   Topic({
     required this.id,
     required this.title, 
     required this.courseId,
-    required this.questionsTotal,
+    // required this.questionsTotal,
     required this.questions
   });
 
