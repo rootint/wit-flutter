@@ -23,7 +23,7 @@ Future<void> init() async {
   final _dio = Dio(
     BaseOptions(
       baseUrl: C.apiURL,
-      headers: {"username": "testing1"},
+      headers: {"username": "test"},
       contentType: 'application/json',
     ),
   );

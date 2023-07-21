@@ -9,6 +9,8 @@ import 'package:learning_app/domain/models/message_response.dart';
 import 'package:learning_app/domain/models/topic.dart';
 import 'package:retrofit/http.dart';
 
+import '../dto/create_course_dto.dart';
+
 part 'main_api.g.dart';
 
 @RestApi()
@@ -26,6 +28,9 @@ abstract class MainApi {
 
   @GET('/courses/{course_id}')
   Future<List<Topic>> getCourseTopics(@Path('course_id') final int courseId);
+
+  @POST('/courses')
+  Future<void> createCourse(@Body() CreateCourseDto dto);
 
   // @GET('/courses/{course_id}/{topic_id}/generate')
   @GET('/topics/{topic_id}/generate')

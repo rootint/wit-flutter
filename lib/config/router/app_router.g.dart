@@ -19,6 +19,10 @@ RouteBase get $homeRoute => GoRouteData.$route(
           factory: $CourseRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'create-course',
+          factory: $CreateCourseRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'topic',
           factory: $TopicRouteExtension._fromState,
         ),
@@ -56,6 +60,24 @@ extension $CourseRouteExtension on CourseRoute {
         queryParams: {
           'course-id': courseId.toString(),
         },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $CreateCourseRouteExtension on CreateCourseRoute {
+  static CreateCourseRoute _fromState(GoRouterState state) =>
+      const CreateCourseRoute();
+
+  String get location => GoRouteData.$location(
+        '/create-course',
       );
 
   void go(BuildContext context) => context.go(location);

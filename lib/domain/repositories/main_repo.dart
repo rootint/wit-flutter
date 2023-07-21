@@ -1,4 +1,5 @@
 import 'package:learning_app/data/network/dto/auth_dto.dart';
+import 'package:learning_app/data/network/dto/create_course_dto.dart';
 import 'package:learning_app/domain/models/auth_response.dart';
 import 'package:learning_app/domain/models/message_response.dart';
 
@@ -13,10 +14,14 @@ abstract class MainRepo {
   Future<AuthResponse> register(final AuthDto dto);
 
   Future<List<Course>> getCoursesList();
+  
+  Future<void> createCourse(final String youtubeURL);
 
   Future<List<Topic>> getCourseTopics(final int courseId);
 
   Future<Chat> generateChat(final String topicId);
+
+
 
   Future<List<Message>> getMessages(final int topicId, final int questionId);
 

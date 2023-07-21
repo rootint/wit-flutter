@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:learning_app/presentation/screens/create_course/create_course_screen.dart';
 
 import '../../presentation/screens/auth/auth_screen.dart';
 import '../../presentation/screens/course/course_screen.dart';
@@ -13,6 +14,9 @@ part 'app_router.g.dart';
   routes: [
     TypedGoRoute<CourseRoute>(
       path: 'course',
+    ),
+    TypedGoRoute<CreateCourseRoute>(
+      path: 'create-course',
     ),
     TypedGoRoute<TopicRoute>(
       path: 'topic',
@@ -33,6 +37,20 @@ class HomeRoute extends GoRouteData {
     GoRouterState state,
   ) {
     return const HomeScreen();
+  }
+}
+
+@immutable
+class CreateCourseRoute extends GoRouteData {
+  static const path = '/';
+  const CreateCourseRoute();
+
+  @override
+  Widget build(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    return const CreateCourseScreen();
   }
 }
 

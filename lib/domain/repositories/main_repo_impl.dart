@@ -1,4 +1,5 @@
 import 'package:learning_app/data/network/dto/auth_dto.dart';
+import 'package:learning_app/data/network/dto/create_course_dto.dart';
 import 'package:learning_app/data/network/dto/message_dto.dart';
 import 'package:learning_app/domain/models/auth_response.dart';
 import 'package:learning_app/domain/models/chat.dart';
@@ -57,6 +58,12 @@ class MainRepoImpl implements MainRepo {
     String text,
   ) async {
     final response = await api.sendReceiveMessage(topicId, MessageDto(questionId: questionId, answer: text));
+    return response;
+  }
+  
+  @override
+  Future<void> createCourse(String youtubeURL) async {
+    final response = await api.createCourse(CreateCourseDto(youtubeURL: youtubeURL));
     return response;
   }
 }

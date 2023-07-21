@@ -180,13 +180,13 @@ class _TopicScreenState extends State<TopicScreen> {
                                   color: Colors.black.withOpacity(0.5),
                                   fontSize: 16,
                                 ),
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: const EdgeInsets.symmetric( 
                                     horizontal: 8, vertical: 8),
                               ),
                               cursorColor: Colors.black,
                               // autofocus: true,
                               style: TextStyle(
-                                color: Colors.black.withOpacity(0.5),
+                                color: Colors.black,
                                 fontSize: 16,
                               ),
                               maxLines: 10,

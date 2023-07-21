@@ -24,42 +24,48 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: CustomScrollView(
-          slivers: [
-            const SliverPersistentHeader(
-              pinned: true,
-              delegate: HeaderBar(),
-            ),
-            BlocBuilder<CoursesBloc, CoursesState>(
-              builder: (context, state) {
-                if (state is CoursesLoading) {
-                  return const SliverFillRemaining(
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                  );
-                }
-                if (state is CoursesLoaded) {
-                  return SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        if (index == state.courses.length) {
-                          return const SizedBox(height: 32);
-                        }
-                        return CourseCard(
-                          heroTag: '',
-                          course: state.courses[index],
-                          isHomePage: true,
-                        );
-                      },
-                      childCount: state.courses.length + 1,
-                    ),
-                  );
-                }
-                return SliverFillRemaining(child: Text(state.toString()));
-              },
-            ),
-          ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            context.read<CoursesBloc>().add(GetCoursesEvent());
+          },
+          color: Colors.black,
+          child: CustomScrollView(
+            slivers: [
+              const SliverPersistentHeader(
+                pinned: true,
+                delegate: HeaderBar(),
+              ),
+              BlocBuilder<CoursesBloc, CoursesState>(
+                builder: (context, state) {
+                  if (state is CoursesLoading) {
+                    return const SliverFillRemaining(
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    );
+                  }
+                  if (state is CoursesLoaded) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          if (index == state.courses.length) {
+                            return const SizedBox(height: 32);
+                          }
+                          return CourseCard(
+                            heroTag: '',
+                            course: state.courses[index],
+                            isHomePage: true,
+                          );
+                        },
+                        childCount: state.courses.length + 1,
+                      ),
+                    );
+                  }
+                  return SliverFillRemaining(child: Text(state.toString()));
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

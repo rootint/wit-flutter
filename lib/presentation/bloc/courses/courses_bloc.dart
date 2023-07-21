@@ -14,6 +14,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
 
   CoursesBloc({required this.repo}) : super(CoursesLoading()) {
     on<GetCoursesEvent>(_getCoursesHandler);
+    on<CreateCourseEvent>(_createCourseHandler);
   }
 
   Future<void> _getCoursesHandler(
@@ -25,5 +26,23 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       courses[e.id] = e;
     }
     emit(CoursesLoaded(response));
+  }
+
+  Future<void> _createCourseHandler(
+      CreateCourseEvent event, Emitter<CoursesState> emit) async {
+    emit(CoursesLoading());
+    final r = await repo.createCourse(event.youtubeURL);
+    final response = await repo.getCoursesList();
+    // response.map((e) => courses[e.id] = e);
+    for (var e in response) {
+      courses[e.id] = e;
+    }
+    emit(CoursesLoaded(response));
+    // response.map((e) => courses[e.id] = e);
+    // emit(CoursesLoaded(courses.values.toList()));
+    // for (var e in response) {
+    //   courses[e.id] = e;
+    // }
+    // emit(CoursesLoaded(response));
   }
 }
