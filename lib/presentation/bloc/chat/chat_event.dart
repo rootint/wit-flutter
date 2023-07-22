@@ -7,6 +7,12 @@ abstract class ChatEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class CreateChatEvent extends ChatEvent {
+  final int topicId;
+
+  const CreateChatEvent(this.topicId);
+}
+
 class GetChatEvent extends ChatEvent {
   final int topicId;
   final int questionId;

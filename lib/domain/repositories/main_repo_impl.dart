@@ -5,6 +5,7 @@ import 'package:learning_app/domain/models/auth_response.dart';
 import 'package:learning_app/domain/models/chat.dart';
 import 'package:learning_app/domain/models/course.dart';
 import 'package:learning_app/domain/models/message_response.dart';
+import 'package:learning_app/domain/models/summary.dart';
 import 'package:learning_app/domain/models/topic.dart';
 import 'package:learning_app/domain/repositories/main_repo.dart';
 
@@ -57,13 +58,27 @@ class MainRepoImpl implements MainRepo {
     int questionId,
     String text,
   ) async {
-    final response = await api.sendReceiveMessage(topicId, MessageDto(questionId: questionId, answer: text));
+    final response = await api.sendReceiveMessage(
+        topicId, MessageDto(questionId: questionId, answer: text));
     return response;
   }
-  
+
   @override
   Future<void> createCourse(String youtubeURL) async {
-    final response = await api.createCourse(CreateCourseDto(youtubeURL: youtubeURL));
+    final response =
+        await api.createCourse(CreateCourseDto(youtubeURL: youtubeURL));
+    return response;
+  }
+
+  @override
+  Future<void> createChat(int topicId) async {
+    final response = await api.createChat(topicId);
+    return response;
+  }
+
+  @override
+  Future<Summary> getSummary(int topicId) async {
+    final response = await api.summarize(topicId);
     return response;
   }
 }

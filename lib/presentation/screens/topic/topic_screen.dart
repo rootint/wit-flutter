@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_app/presentation/bloc/chat/chat_bloc.dart';
+import 'package:learning_app/presentation/bloc/courses/courses_bloc.dart';
 import 'package:learning_app/presentation/widgets/custom_app_bar.dart';
 
 class TopicScreen extends StatefulWidget {
@@ -52,8 +53,9 @@ class _TopicScreenState extends State<TopicScreen> {
               preferredSize: const Size.fromHeight(46),
               child: CustomAppBar(
                 leadingText: 'Topics',
-                title: 'Introduction',
-                subtitle: 'Question 1',
+                // title: context.read<CoursesBloc>().courses
+                // title: wi,
+                title: 'Question #${widget.questionId}',
               ),
             ),
             body: SafeArea(
@@ -82,8 +84,9 @@ class _TopicScreenState extends State<TopicScreen> {
                               child: Text(
                                 // 'What is Feature Engineering?',
                                 // state.messages.toString(),
+                                state.messages[0].text.toString().trim(),
                                 // 'Testing',
-                                'What is the difference between simple linear regression and multiple linear regression?',
+                                // 'What is the difference between simple linear regression and multiple linear regression?',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -239,8 +242,9 @@ class _TopicScreenState extends State<TopicScreen> {
               preferredSize: const Size.fromHeight(46),
               child: CustomAppBar(
                 leadingText: 'Topics',
-                title: 'Introduction',
-                subtitle: 'Question 1',
+                title: 'Question #${widget.questionId}',
+                // title: 'Introduction',
+                // subtitle: 'Question 1',
               ),
             ),
             body: SafeArea(
@@ -269,7 +273,8 @@ class _TopicScreenState extends State<TopicScreen> {
                               child: Text(
                                 // 'What is Feature Engineering?',
                                 // state.messages.toString(),
-                                'Testing',
+                                // 'Testing',
+                                '',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -300,7 +305,7 @@ class _TopicScreenState extends State<TopicScreen> {
                         // }
                         return MessageBubble(
                             sentByUser: state.messages[index].sentByUser == 1,
-                            text: state.messages[index].text);
+                            text: state.messages[index].text.trim());
                       },
                       itemCount: state.messages.length + 1,
                     ),
@@ -434,7 +439,7 @@ class MessageBubble extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(12),
           child: Text(
-            text,
+            text.trim(),
             style: TextStyle(
               color: sentByUser ? Colors.white : Colors.black,
               fontSize: 16,

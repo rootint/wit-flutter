@@ -27,6 +27,10 @@ RouteBase get $homeRoute => GoRouteData.$route(
           factory: $TopicRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'summary',
+          factory: $SummaryRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'auth',
           factory: $AuthRouteExtension._fromState,
         ),
@@ -100,6 +104,28 @@ extension $TopicRouteExtension on TopicRoute {
         '/topic',
         queryParams: {
           'question-id': questionId.toString(),
+          'topic-id': topicId.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SummaryRouteExtension on SummaryRoute {
+  static SummaryRoute _fromState(GoRouterState state) => SummaryRoute(
+        topicId: int.parse(state.queryParameters['topic-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/summary',
+        queryParams: {
           'topic-id': topicId.toString(),
         },
       );

@@ -6,6 +6,7 @@ import 'package:learning_app/domain/models/message_response.dart';
 import '../models/chat.dart';
 import '../models/course.dart';
 import '../models/message.dart';
+import '../models/summary.dart';
 import '../models/topic.dart';
 
 abstract class MainRepo {
@@ -21,7 +22,9 @@ abstract class MainRepo {
 
   Future<Chat> generateChat(final String topicId);
 
+  Future<Summary> getSummary(final int topicId);
 
+  Future<void> createChat(final int topicId);
 
   Future<List<Message>> getMessages(final int topicId, final int questionId);
 

@@ -12,8 +12,15 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   Map<int, List<Message>> chats = {};
 
   ChatBloc(this.repo) : super(ChatLoading()) {
+    on<CreateChatEvent>(_createChatHandler);
     on<GetChatEvent>(_getChatHandler);
     on<SendMessageEvent>(_sendMessageHandler);
+  }
+
+  Future<void> _createChatHandler(
+      CreateChatEvent event, Emitter<ChatState> emit) async {
+    emit(ChatLoading());
+    final response = await repo.createChat(event.topicId);
   }
 
   Future<void> _getChatHandler(

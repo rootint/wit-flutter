@@ -4,6 +4,7 @@ import 'package:learning_app/presentation/screens/create_course/create_course_sc
 
 import '../../presentation/screens/auth/auth_screen.dart';
 import '../../presentation/screens/course/course_screen.dart';
+import '../../presentation/screens/course/summary_screen.dart';
 import '../../presentation/screens/home/home_screen.dart';
 import '../../presentation/screens/topic/topic_screen.dart';
 
@@ -20,6 +21,9 @@ part 'app_router.g.dart';
     ),
     TypedGoRoute<TopicRoute>(
       path: 'topic',
+    ),
+    TypedGoRoute<SummaryRoute>(
+      path: 'summary',
     ),
     TypedGoRoute<AuthRoute>(
       path: 'auth',
@@ -41,8 +45,23 @@ class HomeRoute extends GoRouteData {
 }
 
 @immutable
+class SummaryRoute extends GoRouteData {
+  static const path = '/summary';
+  const SummaryRoute({required this.topicId});
+  final int topicId;
+
+  @override
+  Widget build(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    return SummaryScreen(topicId: topicId,);
+  }
+}
+
+@immutable
 class CreateCourseRoute extends GoRouteData {
-  static const path = '/';
+  static const path = '/create-course';
   const CreateCourseRoute();
 
   @override

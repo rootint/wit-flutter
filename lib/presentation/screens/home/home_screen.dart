@@ -48,6 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     return SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
+                          if (state.courses.length == 0) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 64.0),
+                              child: Center(
+                                child: Text("You have no courses!"),
+                              ),
+                            );
+                          }
                           if (index == state.courses.length) {
                             return const SizedBox(height: 32);
                           }
